@@ -1,0 +1,43 @@
+apply plugin: 'idea'
+apply plugin: 'java-gradle-plugin'
+apply plugin: 'maven-publish'
+apply plugin: "jacoco"
+
+sourceCompatibility = 1.7
+version = '1.0-SNAPSHOT'
+group = 'com.accuity'
+
+repositories {
+    mavenCentral()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            name "snapshots"
+            credentials{
+                username nexusUser
+                password nexusPassword
+            }
+            url nexusSnapshotUri
+        }
+        maven{
+            name "releases"
+            credentials {
+                username nexusUser
+                password nexusPassword
+            }
+            url nexusReleaseUri
+        }
+    }
+}
+
+dependencies {
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.4.1'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.+'
+}
