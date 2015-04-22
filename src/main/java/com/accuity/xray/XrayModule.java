@@ -1,6 +1,7 @@
 package com.accuity.xray;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import java.util.List;
 
@@ -8,14 +9,14 @@ import java.util.List;
  * Created by burnsj3 on 4/16/2015.
  */
 public class XrayModule {
-    String path;
-    int total;
-    int passed;
-    int ignored;
-    int failed;
-    int error;
+    private String path;
+    private int total;
+    private int passed;
+    private int ignored;
+    private int failed;
+    private JsonNode error;
     @JsonProperty("test")
-    List<XrayTest> tests;
+    private List<XrayTest> tests;
 
     public String getPath() {
         return path;
@@ -57,11 +58,11 @@ public class XrayModule {
         this.failed = failed;
     }
 
-    public int getError() {
+    public JsonNode getError() {
         return error;
     }
 
-    public void setError(int error) {
+    public void setError(JsonNode error) {
         this.error = error;
     }
 
