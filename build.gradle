@@ -4,6 +4,7 @@ apply plugin: 'maven-publish'
 apply plugin: "jacoco"
 
 sourceCompatibility = 1.7
+targetCompatibility = 1.7
 version = '1.0-SNAPSHOT'
 group = 'com.accuity'
 
