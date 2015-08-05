@@ -1,6 +1,8 @@
 # gradle-xray
 A gradle plugin for running xray tests.
 
+More about xray here: https://github.com/robwhitby/xray
+
 This plugin defines a task which will trigger xray tests via an HTTP request.  It parses the json response and prints out any failures to the console.  It is helpful for running xray tests as part of your integration test task.
 
 example:
