@@ -8,6 +8,7 @@ import java.util.List;
 public class XrayReport {
     private int totalTests;
     private int passedTests;
+    private int ignoredTests;
     private List<String> errors;
 
     public List<String> getErrors() {
@@ -32,5 +33,13 @@ public class XrayReport {
 
     public void setPassedTests(int passedTests) {
         this.passedTests = passedTests;
+    }
+
+    public int getIgnoredTests() {
+        return ignoredTests;
+    }
+
+    public void setIgnoredTests(int ignoredTests) {
+        this.ignoredTests = ignoredTests;
     }
 }

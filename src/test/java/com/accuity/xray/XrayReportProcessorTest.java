@@ -21,10 +21,12 @@ public class XrayReportProcessorTest {
         List<XrayModule> modules = new ArrayList<>();
         XrayModule module1 = new XrayModule();
         module1.setPassed(5);
+        module1.setIgnored(0);
         module1.setTotal(5);
         modules.add(module1);
         XrayModule module2 = new XrayModule();
         module2.setPassed(3);
+        module2.setIgnored(1);
         module2.setTotal(5);
         modules.add(module2);
         execution.setModule(modules);
@@ -32,6 +34,9 @@ public class XrayReportProcessorTest {
         XrayReport report = xrayTask.processXrayReport(json);
         Assert.assertEquals(report.getTotalTests(), 10);
         Assert.assertEquals(report.getPassedTests(), 8);
+        Assert.assertEquals(report.getPassedTests(), 8);
+
+        Assert.assertEquals(report.getIgnoredTests(), 1);
 
     }
 }
