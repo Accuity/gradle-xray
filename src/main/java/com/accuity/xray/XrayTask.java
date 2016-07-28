@@ -40,6 +40,7 @@ public class XrayTask extends DefaultTask {
                 XrayReport report = processor.processXrayReport(json);
                 long endTime = Calendar.getInstance().getTimeInMillis();
                 System.out.println(report.getPassedTests() + "/" + report.getTotalTests() + " Xray tests passed in " + ((endTime - startTime) / 1000) + " seconds");
+                System.out.println(report.getIgnoredTests() + " Xray tests ignored");
                 if (!report.getErrors().isEmpty()) {
                     for (String failedTest : report.getErrors()) {
                         System.out.println(failedTest);

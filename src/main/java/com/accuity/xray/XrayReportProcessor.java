@@ -20,15 +20,18 @@ public class XrayReportProcessor {
         XrayExecution xrayExecution = xrayWrapper.getTests();
         int totalTests = 0;
         int passedTests = 0;
+        int ignoredTests = 0;
         for (XrayModule module : xrayExecution.getModule()) {
             int moduleTestsTotal = module.getTotal();
             int moduleTestsPassed = module.getPassed();
+            int moduleTestsIgnored = module.getIgnored();
             totalTests += moduleTestsTotal;
             passedTests += moduleTestsPassed;
-            if (moduleTestsPassed != moduleTestsTotal) {
+            ignoredTests += moduleTestsIgnored;
+            if (moduleTestsPassed + moduleTestsIgnored != moduleTestsTotal) {
                 if (module.getTests() != null) {
                     for (XrayTest test : module.getTests()) {
-                        if (!test.getResult().equals("passed")) {
+                        if (!test.getResult().equals("passed") && !test.getResult().equals("ignored")) {
                             if (test.getError() != null) {
                                 failedTests.add(module.getPath() + " \t" + test.getName() + " \t" + test.getError().toString());
                             } else {
@@ -46,6 +49,7 @@ public class XrayReportProcessor {
         xrayReport.setErrors(failedTests);
         xrayReport.setTotalTests(totalTests);
         xrayReport.setPassedTests(passedTests);
+        xrayReport.setIgnoredTests(ignoredTests);
         return xrayReport;
     }
 }
